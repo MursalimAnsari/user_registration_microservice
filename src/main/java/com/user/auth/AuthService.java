@@ -20,7 +20,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = User
+        User user = User
                 .builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -29,8 +29,8 @@ public class AuthService {
                 .role(request.getRole())
                 .build();
 
-        var savedUser= userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        User savedUser= userRepository.save(user);
+        String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().accessToken(jwtToken).build();
     }
 
@@ -43,10 +43,10 @@ public class AuthService {
                     )
                 );
         // if the above code executes that means username and password is correct
-        var user = userRepository
+        User user = userRepository
                 .findByEmail(request.getEmail())
                 .orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+        String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().accessToken(jwtToken).build();
     }
 }

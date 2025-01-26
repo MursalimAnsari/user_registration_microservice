@@ -29,7 +29,7 @@ public class RegisterRequest {
     private String email;
     @NotEmpty(message = "password is mandatory")
     @NotBlank(message = "password is mandatory")
-    @Size(min = 8, message = "password should be atleast 8 characters long")
+    @Size(min = 5, max = 12, message = "password should be correct")
     private String password;
     private Role role;
 
