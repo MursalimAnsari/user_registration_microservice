@@ -53,11 +53,15 @@ mvn clean install
 ### Run the application: Start the Spring Boot application with:
 
  
+```
 mvn spring-boot:run
-Access the application:
+```
 
-Default URL: http://localhost:8080
+#### Access the application:
 
+- Default URL: http://localhost:8080
+
+```
 body: 
 {
     "firstname":"sameer",
@@ -66,8 +70,10 @@ body:
     "password":"12345678"
 }
 
-Project Structure
+```
 
+### Project Structure
+```
 src/
 ├── main/
 │   ├── java/
@@ -83,5 +89,7 @@ src/
 │       └── static/               # Static resources (CSS, JS)
 └── test/
     └── java/                     # Test cases
-Security Configuration
+```
+
+### Security Configuration
 This project uses Spring Security to encrypt passwords and authenticate users. Update the SecurityConfig class to customize authentication and authorization rules.
