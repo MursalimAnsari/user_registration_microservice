@@ -1,10 +1,12 @@
-User Registration System
+# User Registration System
 A Spring Boot application for user registration with features like form validation, secure password storage, and email verification. This project provides a basic structure for building user management systems.
 
+```
 Features
 User Registration: Users can register with a username, email, and password.
 Form Validation: Ensures input fields are properly validated (e.g., email format, password strength).
 Secure Password Storage: Passwords are encrypted using BCrypt.
+```
 
 Technologies Used
 Spring Boot 3.x
