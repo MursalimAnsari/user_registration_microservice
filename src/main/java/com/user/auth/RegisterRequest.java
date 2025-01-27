@@ -1,6 +1,8 @@
 package com.user.auth;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.user.model.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,19 +19,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RegisterRequest {
 
-
-    @NotEmpty(message = "firstname is mandatory")
-    @NotBlank(message = "firstname is mandatory")
+    @NotEmpty(message = "firstname is required")
+    @NotBlank(message = "firstname is required")
     private String firstname;
-    @NotEmpty(message = "lastname is mandatory")
-    @NotBlank(message = "lastname is mandatory")
+    @NotEmpty(message = "lastname is required")
+    @NotBlank(message = "lastname is required")
     private String lastname;
     @Email(message = "email is not correct")
-    @NotBlank(message = "password is mandatory")
+    @NotBlank(message = "email is required")
     private String email;
-    @NotEmpty(message = "password is mandatory")
-    @NotBlank(message = "password is mandatory")
-    @Size(min = 5, max = 12, message = "password should be correct")
+    @NotEmpty(message = "password is required")
+    @NotBlank(message = "password is required")
+    @Size(min = 5, max = 12, message = "password is not correct")
     private String password;
     private Role role;
 

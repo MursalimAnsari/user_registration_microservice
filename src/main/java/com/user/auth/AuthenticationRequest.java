@@ -9,17 +9,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthenticationRequest {
     @Email(message = "email is not correct")
-    @NotBlank(message = "email can't be empty")
+    @NotBlank(message = "email is required")
     private String email;
-    @NotEmpty(message = "password is mandatory")
-    @NotBlank(message = "password is mandatory")
-    @Size(min = 5, max = 8, message = "password must be correct")
+    @NotEmpty(message = "password is required")
+    @NotBlank(message = "password is required")
+    @Size(min = 5, max = 12, message = "password is not correct")
     private String password;
 
 }

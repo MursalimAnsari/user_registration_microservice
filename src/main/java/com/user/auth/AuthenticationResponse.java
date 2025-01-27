@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -13,5 +15,8 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
     @JsonProperty("access_token")
     private  String accessToken;
-
+    @JsonProperty("message")
+    private String message;
+    @JsonProperty("timestamp")
+    private Instant timestamp;
 }
