@@ -42,26 +42,30 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         //Verify whether user is present in db
         //Verify whether token is valid
         email = jwtService.extractUsername(jwt);
-        //If user is present and no authentication object in securityContext
         if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(email);
-            //If valid set to security context holder
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                    userDetails,
-                    null,
-                    userDetails.getAuthorities()
-            );
-            authToken.setDetails(
-                    new WebAuthenticationDetailsSource().buildDetails(request)
-            );
-            SecurityContextHolder.getContext().setAuthentication(authToken);
+
+            if (jwtService.isTokenValid(jwt, userDetails)) {
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities()
+                );
+                authToken.setDetails(
+                        new WebAuthenticationDetailsSource().buildDetails(request)
+                );
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+            }
         }
+
         filterChain.doFilter(request, response);
     }
 
-    //Verify if it is whitelisted path and if yes don't do anything
+
     @Override
     protected boolean shouldNotFilter(@NonNull HttpServletRequest request) throws ServletException {
-        return request.getServletPath().contains("/crackit/v1/auth");
+        String path = request.getServletPath();
+        return path
+                .startsWith("/api/v1/auth");
     }
 }

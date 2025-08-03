@@ -1,8 +1,6 @@
-package com.user.auth;
+package com.user.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.user.model.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -18,7 +16,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterRequest {
-
     @NotEmpty(message = "firstname is required")
     @NotBlank(message = "firstname is required")
     private String firstname;

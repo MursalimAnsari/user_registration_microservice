@@ -1,5 +1,6 @@
 package com.user.security;
 
+import com.user.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,11 +32,9 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/**")
+                        .requestMatchers("/api/v1/auth/**", "/api/v1/email/**", "/api/v1/weather/**")
                         .permitAll()
-                        .requestMatchers("/api/v1/home/**")
-                        .hasAnyRole(ADMIN.name())
-                        .anyRequest()
+                        .anyRequest ()
                         .authenticated()
                 )
                 .sessionManagement(session -> session

@@ -1,4 +1,4 @@
-package com.user.auth;
+package com.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -19,4 +19,8 @@ public class AuthenticationResponse {
     private String message;
     @JsonProperty("timestamp")
     private Instant timestamp;
+
+    public AuthenticationResponse ( String message ) {
+        this.message = message;
+    }
 }
